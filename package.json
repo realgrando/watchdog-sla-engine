@@ -1,0 +1,77 @@
+{
+  "name": "watchdog-sla-engine",
+  "version": "1.0.0",
+  "description": "Deterministic event-driven SLA engine and lifecycle state machine for TypeScript and Node.js.",
+  "author": "Gustavo Grando (@realgrando)",
+  "license": "MIT",
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.mjs",
+      "require": "./dist/index.js"
+    },
+    "./drizzle": {
+      "types": "./dist/adapters/drizzle/index.d.ts",
+      "import": "./dist/adapters/drizzle/index.mjs",
+      "require": "./dist/adapters/drizzle/index.js"
+    },
+    "./nestjs": {
+      "types": "./dist/adapters/nestjs/index.d.ts",
+      "import": "./dist/adapters/nestjs/index.mjs",
+      "require": "./dist/adapters/nestjs/index.js"
+    }
+  },
+  "scripts": {
+    "build": "tsc -p tsconfig.build.json",
+    "typecheck": "tsc --noEmit",
+    "test": "vitest run",
+    "test:watch": "vitest",
+    "simulate": "tsx examples/run-simulation.ts"
+  },
+  "keywords": [
+    "sla",
+    "sla-engine",
+    "state-machine",
+    "event-driven",
+    "drizzle-orm",
+    "nestjs",
+    "distributed-systems",
+    "guardrails",
+    "ai-agent-governance"
+  ],
+  "dependencies": {
+    "drizzle-orm": "^0.38.0"
+  },
+  "devDependencies": {
+    "@nestjs/common": "^11.0.1",
+    "@nestjs/core": "^11.0.1",
+    "@types/node": "^22.10.2",
+    "reflect-metadata": "^0.2.2",
+    "rxjs": "^7.8.1",
+    "tsx": "^4.19.2",
+    "typescript": "^5.7.2",
+    "vitest": "^2.1.8"
+  },
+  "peerDependencies": {
+    "@nestjs/common": ">=10.0.0 || >=11.0.0",
+    "@nestjs/core": ">=10.0.0 || >=11.0.0",
+    "drizzle-orm": ">=0.30.0",
+    "reflect-metadata": ">=0.2.0"
+  },
+  "peerDependenciesMeta": {
+    "@nestjs/common": {
+      "optional": true
+    },
+    "@nestjs/core": {
+      "optional": true
+    },
+    "drizzle-orm": {
+      "optional": true
+    },
+    "reflect-metadata": {
+      "optional": true
+    }
+  }
+}
