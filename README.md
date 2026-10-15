@@ -1,13 +1,14 @@
 # watchdog-sla-engine
+<Br/>
 
-[![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](https://opensource.org/licenses/MIT)
-[![TypeScript: Strict](https://img.shields.io/badge/TypeScript-Strict%205.7-blue.svg)](https://www.typescriptlang.org/)
-[![Architecture: Hexagonal](https://img.shields.io/badge/Architecture-Ports%20%26%20Adapters-emerald.svg)](https://en.wikipedia.org/wiki/Hexagonal_architecture_(software))
-[![Tests: Vitest](https://img.shields.io/badge/Tests-Vitest%20Passed-brightgreen.svg)](https://vitest.dev/)
+Reference implementation of a deterministic, event-driven SLA policy engine and lifecycle state machine in TypeScript. Built around the **Clock vs. Alarm** architectural paradigm to replace periodic $O(N)$ database polling with atomic, $O(1)$ state evaluations inside ACID transactions.
 
-**Deterministic, event-driven SLA policy engine and lifecycle state machine for TypeScript and Node.js.** Engineered around the **Clock vs. Alarm** architectural paradigm, `watchdog-sla-engine` eliminates traditional periodic polling anti-patterns ($O(N)$ database cron sweeps) in favor of atomic, $O(1)$ state evaluations inside transactional workflows. Designed as a foundational guardrail for distributed task orchestration, high-concurrency ticket/incident management, and autonomous AI agent tool-calling loops.
+> **Architectural Context & Origin:** 
+> I originally engineered this engine inside **`nivix-os`** (the proprietary operations and CRM monolith at [Nivix Company](https://github.com/nivix-company)). In our production workflow, tracking response and resolution SLAs across thousands of concurrent pipeline entities and automated tasks via traditional cron jobs created the classic polling bottleneck—unnecessary I/O spikes and potential race conditions during stage transitions.
+> 
+> I extracted, sanitized, and decoupled this core module from our business domain using **Hexagonal Architecture (Ports & Adapters)** to serve as a standalone architectural study and reference implementation for lockless temporal state machines.
 
----
+<Br/>
 
 ## The Architectural Problem: Why Naive SLAs Fail at Scale
 
